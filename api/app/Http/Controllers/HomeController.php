@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Predictions;
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -21,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $user = Auth::user();
+        $predictions = Predictions::where('user_id', $user->id)->get();
+
+        return view('dashboard', $predictions);
     }
 }
