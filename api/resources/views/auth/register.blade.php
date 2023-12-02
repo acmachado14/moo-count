@@ -8,9 +8,9 @@
                     <i class="tim-icons icon-wifi"></i>
                 </div>
                 <div class="description">
-                    <h3 class="info-title">{{ __('Marketing') }}</h3>
+                    <h3 class="info-title">{{ __('ESP32') }}</h3>
                     <p class="description">
-                        {{ __('We\'ve created the marketing campaign of the website. It was a very interesting collaboration.') }}
+                        {{ __('Turbocharge Your Projects with Dual-Core Speed, Bluetooth, and Wi-Fi Awesomeness! 🚀') }}
                     </p>
                 </div>
             </div>
@@ -19,23 +19,13 @@
                     <i class="tim-icons icon-triangle-right-17"></i>
                 </div>
                 <div class="description">
-                    <h3 class="info-title">{{ __('Fully Coded in HTML5') }}</h3>
+                    <h3 class="info-title">{{ __('Nano BLE') }}</h3>
                     <p class="description">
-                        {{ __('We\'ve developed the website with HTML5 and CSS3. The client has access to the code using GitHub.') }}
+                        {{ __('Mini Marvel of Bluetooth Low Energy! 🎯 Compact, powerful, and ready for your IoT adventures. This tiny wonder packs BLE connectivity into your projects with ease. Unleash innovation in a nano-sized package with Nano BLE!') }}
                     </p>
                 </div>
             </div>
-            <div class="info-area info-horizontal">
-                <div class="icon icon-info">
-                    <i class="tim-icons icon-trophy"></i>
-                </div>
-                <div class="description">
-                    <h3 class="info-title">{{ __('Built Audience') }}</h3>
-                    <p class="description">
-                        {{ __('There is also a Fully Customizable CMS Admin Dashboard for this product.') }}
-                    </p>
-                </div>
-            </div>
+
         </div>
         <div class="col-md-7 mr-auto">
             <div class="card card-register card-white">

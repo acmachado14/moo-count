@@ -30,4 +30,15 @@ class ApiController extends Controller
 
         return response()->json(['message' => 'Predicion storage successfully!']);
     }
+
+    public function handlePostTest(Request $request)
+    {
+        $request->validate([
+            'teste' => 'required'
+        ]);
+
+        echo($request['teste']);
+
+        return response()->json(['message' => 'deu tudo certo']);
+    }
 }
