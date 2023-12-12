@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlertController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
+Route::get('/alert/create', [AlertController::class, 'create'])->name('alert.create')->middleware('auth');;
+Route::post('/alert/store', [AlertController::class, 'store'])->name('alert.store')->middleware('auth');;
 
 //Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 

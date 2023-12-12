@@ -5,12 +5,10 @@
         <h1>Concentração de Gados por Hora</h1>
         <canvas id="predictionsChart" width="400" height="200"></canvas>
     </div>
+    <br>
     <div class="container">
-        <!--
         <h1>Concentração de Gados Dias da Semana</h1>
-
-        <canvas id="predictionsByDayChart" width="600" height="300"></canvas>
-        -->
+        <canvas id="predictionsByDayChart" width="400" height="200"></canvas>
     </div>
 @endsection
 
@@ -24,7 +22,7 @@
 
         var ctx = document.getElementById('predictionsChart').getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'bar', // Pode ser 'line' para um gráfico de linha
+            type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{
@@ -44,35 +42,21 @@
             }
         });
     </script>
-
     <script>
         var predictionsByDayData = @json($predictionsByDay);
 
-        // Mapeia os valores do backend para os dias da semana em inglês
-        var dayMapping = {
-            'domingo': 'Sunday',
-            'segunda-feira': 'Monday',
-            'terça-feira': 'Tuesday',
-            'quarta-feira': 'Wednesday',
-            'quinta-feira': 'Thursday',
-            'sexta-feira': 'Friday',
-            'sábado': 'Saturday',
-        };
+        var diasDaSemana = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-        var labelsByDay = predictionsByDayData.map(prediction => {
-            var day = prediction.day.toLowerCase();
-            console.log("Dia original:", day, "Dia mapeado:", dayMapping[day]);
-            return dayMapping[day];
-        });
-        var valuesByDay = predictionsByDayData.map(prediction => prediction.qtd);
+        var labelsByDay = diasDaSemana.map(day => predictionsByDayData[day] ? day : '');
+        var valuesByDay = diasDaSemana.map(day => predictionsByDayData[day] ? predictionsByDayData[day].max_qtd : 0);
 
         var ctxByDay = document.getElementById('predictionsByDayChart').getContext('2d');
         var myChartByDay = new Chart(ctxByDay, {
             type: 'bar',
             data: {
-                labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                labels: labelsByDay,
                 datasets: [{
-                    label: 'Total de Previsões',
+                    label: 'Máximo de Previsões',
                     data: valuesByDay,
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
@@ -88,4 +72,5 @@
             }
         });
     </script>
+
 @endpush
