@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Prediction;
 use App\Models\Predictions;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,7 @@ class HomeController extends Controller
         $predictionsByHour = DB::table('predictions')
             ->select(
                 DB::raw("CAST(strftime('%H', created_at) AS INTEGER) as hour"),
-                DB::raw('COUNT(*) as totalPredictions')
+                    DB::raw('MAX(quantity) as totalPredictions')
             )
             ->where('user_id', $user->id)
             ->whereBetween(DB::raw("CAST(strftime('%H', created_at) AS INTEGER)"), [6, 18]) // Filtra as horas entre 6 e 18
@@ -49,7 +50,7 @@ class HomeController extends Controller
     // Obtém a data de 7 dias atrás
         $dataSeteDiasAtras = Carbon::now()->subDays(7)->toDateString();
 
-        $predictions = Predictions::where('user_id', $user->id)
+        $predictions = Prediction::where('user_id', $user->id)
             ->where('created_at', '>=', $dataSeteDiasAtras)
             ->get();
 
