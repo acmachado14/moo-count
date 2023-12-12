@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Prediction;
 use App\Models\Predictions;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class ApiController extends Controller
             return response()->json(['message' => 'No user found with this email!'], 404);
         }
 
-        $prediction = Predictions::create([
+        $prediction = Prediction::create([
             'quantity' => $request['quantity'],
             'local' =>  $request['local'],
             'user_id' => $user->id
